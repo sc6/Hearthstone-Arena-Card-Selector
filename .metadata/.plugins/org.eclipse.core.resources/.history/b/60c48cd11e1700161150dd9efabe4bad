@@ -1,0 +1,11 @@
+
+public class Card {
+	
+	int quantity;
+	String name;
+	
+	public Card(name, quantity) {
+		
+	}
+
+}

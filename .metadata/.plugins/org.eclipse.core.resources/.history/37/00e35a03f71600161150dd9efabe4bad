@@ -1,0 +1,60 @@
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class Main extends JFrame {
+	
+	JPanel panel_main;
+	
+	JButton button_selectFile;
+	
+	JLabel label_fileName;
+	
+	GridBagConstraints c;
+	
+	File file_csv;
+	
+	public Main() {
+		super("Hearthstone Arena Card Tier Selector");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		panel_main = new JPanel(new GridBagLayout());
+		c = new GridBagConstraints();
+		c.gridx=0;
+		c.gridy=0;
+		label_fileName = new JLabel("No file chosen.");
+		button_selectFile = new JButton("Select File");
+		panel_main.add(button_selectFile);
+		
+		button_selectFile.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent arg0)
+			{
+				JFileChooser fileChooser = new JFileChooser();
+				int returnValue = fileChooser.showOpenDialog(null);
+				if(returnValue == JFileChooser.APPROVE_OPTION)
+				{
+					file_csv = fileChooser.getSelectedFile();
+				}
+			}
+
+		});
+		
+		setVisible(true);
+	}
+	
+
+	public static void main(String[] args) {
+		Main app = new Main();
+	}
+
+}

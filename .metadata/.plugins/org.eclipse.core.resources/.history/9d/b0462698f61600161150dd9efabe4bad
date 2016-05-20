@@ -1,0 +1,34 @@
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Main extends JFrame {
+	
+	JPanel panel_main;
+	
+	JButton button_selectFile;
+	
+	GridBagConstraints c;
+	
+	public Main() {
+		super("Hearthstone Arena Card Tier Selector");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		panel_main = new JPanel(new GridBagLayout());
+		c = new GridBagConstraints();
+		
+		button_selectFile = new JButton("Select File");
+		panel_main.add(button_selectFile);
+		
+		setVisible(true);
+	}
+	
+
+	public static void main(String[] args) {
+		Main app = new Main();
+	}
+
+}

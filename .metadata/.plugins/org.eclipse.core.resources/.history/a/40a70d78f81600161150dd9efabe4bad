@@ -1,0 +1,83 @@
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+
+public class Main extends JFrame {
+	
+	JPanel panel_main;
+	
+	JButton button_selectFile;
+	
+	JLabel label_fileName;
+	
+	GridBagConstraints c;
+	
+	File file_csv;
+	
+	public Main() 
+	{
+		super("Hearthstone Arena Card Tier Selector");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(300, 500);
+		try {
+		UIManager.setLookAndFeel(
+				UIManager.getSystemLookAndFeelClassName());
+		} catch(Exception e) {
+			//UnsupportedLookAndFeelException e
+			//ClassNotFoundException e
+			//InstantiationException e
+			//IllegalAccessException e
+			System.out.println("Warning: can't set the system's look and feel-- resorting to default");
+		}
+		
+		//--instantiation
+		panel_main = new JPanel(new GridBagLayout());
+		button_selectFile = new JButton("Select File");
+		label_fileName = new JLabel("No file chosen...");
+		
+		//--adding elements
+		c = new GridBagConstraints();
+		c.gridx=0;
+		c.gridy=0;
+		c.insets = new Insets(10, 25, 10, 25); //top, left, bottom, right
+		panel_main.add(label_fileName, c);
+		c.gridx++;
+		panel_main.add(button_selectFile, c);
+		
+		//--listeners
+		button_selectFile.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent arg0)
+			{
+				String desktop = System.getProperty("user.home");
+				JFileChooser fileChooser = new JFileChooser(desktop);
+				int returnValue = fileChooser.showOpenDialog(null);
+				if(returnValue == JFileChooser.APPROVE_OPTION)
+				{
+					file_csv = fileChooser.getSelectedFile();
+				}
+			}
+
+		});
+		
+		add(panel_main);
+		setVisible(true);
+	}
+	
+
+	public static void main(String[] args) {
+		Main app = new Main();
+	}
+
+}
