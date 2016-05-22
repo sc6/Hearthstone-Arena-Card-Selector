@@ -3,8 +3,11 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -23,7 +26,12 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class Main extends JFrame {
 	
 	static final long serialVersionUID = 1l;
+	final String DESKTOP = System.getProperty("user.home") +  System.getProperty("file.separator") + "Desktop";
 	
+	Library lib;
+	HashMap<Pair, ArrayList<Integer>> db;
+	
+	/*
 	JPanel panel_main;
 	JPanel panel_arenaStats;
 	
@@ -34,6 +42,7 @@ public class Main extends JFrame {
 	JLabel label_cardsDrafted;
 	
 	GridBagConstraints c;
+	*/
 	
 	File file_csv;
 	
@@ -54,6 +63,22 @@ public class Main extends JFrame {
 		}
 		
 		//--instantiation
+		lib = new Library();
+		db = new HashMap<>();
+		
+		//--run
+		db = lib.parseFile(new File(DESKTOP + System.getProperty("file.separator") + "arena-stats-sample.csv"));
+		
+		System.out.println("Number of entries in database: " + db.size());
+		System.out.println("==Sample Data:");
+		Pair sample_pair_1 = new Pair("Master Jouster", "Demolisher", -1);
+		Pair sample_pair_2 = new Pair("Dark Peddler", "Lost Tallstrider", -1);
+		Pair sample_pair_3 = new Pair("Arcane Missiles", "Mage", -1);
+		System.out.println(sample_pair_1.a + " + " + sample_pair_1.b + " -> " + lib.getScore(db, sample_pair_1));
+		System.out.println(sample_pair_2.a + " + " + sample_pair_2.b + " -> " + lib.getScore(db, sample_pair_2));
+		System.out.println(sample_pair_3.a + " + " + sample_pair_3.b + " -> " + lib.getScore(db, sample_pair_3));
+
+		/*
 		panel_main = new JPanel(new GridBagLayout());
 		panel_arenaStats = new JPanel();
 		panel_arenaStats.setLayout(new BoxLayout(panel_arenaStats, BoxLayout.Y_AXIS));
@@ -92,7 +117,7 @@ public class Main extends JFrame {
 				{
 					file_csv = fileChooser.getSelectedFile();
 					label_fileName.setText(file_csv.getName());
-					ArrayList<ArenaRun> runs = ArenaRun.getFromFile(file_csv);
+					ArrayList<ArenaRun> runs = ArenaRun.parseFile(file_csv);
 					
 					label_arenasRan.setText("Arenas ran: " + runs.size());
 					
@@ -110,6 +135,7 @@ public class Main extends JFrame {
 		
 		add(panel_main);
 		setVisible(true);
+		*/
 	}
 	
 	public void generateReport(ArrayList<ArenaRun> arr) {
