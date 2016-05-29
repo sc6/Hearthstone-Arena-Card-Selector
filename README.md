@@ -1,7 +1,7 @@
 <h3>Hearthstone Arena Card Selector</h3>
 <strong>May 2016</strong><br><br>
 <strong>About:</strong><br>
-This application assigns scores to cards based on entries given a formatted database. The database will feature cards and their previous win history. This algorithm works by assigning points to certain pairings and how they performed in previous arenas.<br><br>
+This application will generate a tier list based on what cards you've already picked and your character class. This algorithm works by assigning points to certain pairings and how they performed in previous arenas, which is given in a formatted csv file. The database is named db.csv.<br><br>
 <strong>Quick Start Guide:</strong><br>
 1. Add files to a web server which supports PHP.<br>
 2. Create an index.html which "requires" Library.php. Create a new Library object and start calling functions from it.<br><br>
