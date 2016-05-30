@@ -1,5 +1,7 @@
 <h3>Hearthstone Arena Card Selector</h3>
 <strong>May 2016</strong><br><br>
+<strong>Demo:</strong><br>
+http://schang.xyz/apps/hearthstone-arena-picker/<br><br>
 <strong>About:</strong><br>
 This application will generate a tier list based on what cards you've already picked and your character class. This algorithm works by assigning points to certain pairings and how they performed in previous arenas, which is given in a formatted csv file. The database is named db.csv.<br><br>
 <strong>Quick Start Guide:</strong><br>
